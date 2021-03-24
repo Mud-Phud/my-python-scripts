@@ -13,28 +13,33 @@ WHILE r != 0 AND LT (g) divides LT (r ) DO:
 """
 
 from sympy import *
+x, y, z = symbols('x, y, z')
 
-x = symbols('x')
 
-f=x**4-x**3-4*x**2-5*x-3
-g=x**2+3*x-5
+def DivAlg(fs,f,mon_ord):
 
-q = 0
-r = f
-
-while (r != 0) & (degree(g) <= degree(r)):
-    q = q + LT(r)/LT(g) 
-    r = r - expand(( LT(r)/LT(g)) * g)
     
+    s = len(fs)
+    a = [0]*s
+    
+    r = 0
+    p = f
+    
+    while p != 0:
+        i = 0                # indexing in python begins at 0, not 1
+        divisionoccurred = False
+        while ( i <= s - 1) and (divisionoccurred == False ):
+            if quo(LT(p,x,y,z,order = mon_ord),LT(fs[i],x,y,z,order = mon_ord) ) != 0:
+                LT_quot = simplify(LT(p,x,y,z,order = mon_ord) / LT( fs[i],x,y,z,order = mon_ord ))
+                a[i] += LT_quot
+                p += - expand( LT_quot * fs[i] )
+                divisionoccurred = True
+            else:
+                i += 1
+        if divisionoccurred == False:
+            r += LT (p,x,y,z,order = mon_ord)
+            p += - LT (p,x,y,z,order = mon_ord)
+                
+    return([a,r])
 
-print("quotient = ",q,", remainder = ",r)
-
-def DivAlg(f,g):
-    q = 0
-    r = f
-
-    while (r != 0) & (degree(g) <= degree(r)):
-        q = q + LT(r)/LT(g) 
-        r = r - expand(( LT(r)/LT(g)) * g)
-        
-    return [q,r]
+print(DivAlg([x * y -1, y**2 - 1 ],x**2 * y + x * y**2 + y**2,'lex') ) 

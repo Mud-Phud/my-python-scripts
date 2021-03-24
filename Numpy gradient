@@ -1,0 +1,79 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usetheme{Boadilla}
+
+\title{Numerical approximations of the derivative\\and the Numpy gradient method}
+\subtitle{Regular and irregular intervals}
+\author{Robert}
+
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{First order derivative approximation}
+We have the standard
+approximation for the estimation of the derivative: 
+\[
+f^{\prime}(x)=\frac{f(x+h)-f(x)}{h}+O(h).
+\]
+To derive this, we assume that the function is $C^{2}$ and we have
+the Taylor series expansion with intermediate value theorem:
+\[
+f(x+h)=f(x)+f^{\prime}(x)h+f^{\prime\prime}(\xi)\frac{h^{2}}{2},\qquad\xi\in(x,x+h)
+\]
+for some $\xi\in(x,x+h)$ and we simply solve for $f^{\prime}(x)$. 
+\end{frame}
+
+\begin{frame}
+\frametitle{First order derivative approximation}
+Switching $h$ to $-h$, we also have 
+\[
+f^{\prime}(x)=\frac{f(x)-f(x-h)}{h}+O(h).
+\]
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{We can do better}
+
+If $f(x)$ is assumed to be $C^{3}$, we have by the Taylor series/intermediate
+value theorem:
+\[
+f(x+h)=f(x)+f^{\prime}(x)h+f^{\prime\prime}(x)\frac{h^{2}}{2}+f^{\prime\prime\prime}(\xi_{+})\frac{h^{3}}{6}
+\]
+for some $\xi_{+}\in(x,x+h)$. We can also switch $h$ to $-h$\textellipsis
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Doing better}
+
+\begin{align*}
+f(x+h) & =f(x)+f^{\prime}(x)h+f^{\prime\prime}(x)\frac{h^{2}}{2}+f^{\prime\prime\prime}(\xi_{+})\frac{h^{3}}{6}\\
+f(x-h) & =f(x)-f^{\prime}(x)h+f^{\prime\prime}(x)\frac{h^{2}}{2}-f^{\prime\prime\prime}(\xi_{-})\frac{h^{3}}{6}
+\end{align*}
+Subtracting these eliminates both the $f(x)$ and the $f^{\prime\prime}(x)$ terms! We then solve for $f^{\prime}(x)$\textellipsis
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Better}
+ 
+\[
+f^{\prime}(x)=\frac{f(x+h)-f(x-h)}{2h}+\left(f^{\prime\prime\prime}(\xi_{+})+f^{\prime\prime\prime}(\xi_{-})\right)\frac{h^{2}}{12}.
+\]
+The error is $O(h^2)$. 
+ 
+\end{frame}
+
+
+
+
+\end{document}
