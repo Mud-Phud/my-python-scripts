@@ -1,0 +1,24 @@
+Necklaces of length 15...
+
+['AAAAAAAAAAAAAAA', 1]
+['AAAABAAAABAAAAB', 5]
+['AAABBAAABBAAABB', 5]
+['AABAABAABAABAAB', 3]
+['AABABAABABAABAB', 5]
+['AABBBAABBBAABBB', 5]
+['ABABBABABBABABB', 5]
+['ABBABBABBABBABB', 3]
+['ABBBBABBBBABBBB', 5]
+['BBBBBBBBBBBBBBB', 1]
+
+plus 
+
+32768 total words of two letters.
+
+2192 necklaces
+
+2 have an isotropy group of Z_15
+6 have an isotropy group of Z_3 (5 + 5 + 5), e.g., AAABBAAABBAAABB
+2 have an isotropy group of  (3 + 3 + 3 + 3 + 3), e.g., ABBABBABBABBABB
+2182 have an isotropy group of  Z_1, 
+
